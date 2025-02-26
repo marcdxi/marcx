@@ -3,7 +3,7 @@
 --     return
 -- end
 
--- Check If Loaded
+-- Check if the game is loaded
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
@@ -30,7 +30,7 @@ local VirtualInputManager = game:GetService("VirtualInputManager")
 local Workspace = game:GetService("Workspace")
 local TeleportService = game:GetService("TeleportService")
 
--- Load Fluent UI Library from the new URL
+-- Load Fluent UI Library from its URL
 local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/marcdxi/marcx/refs/heads/main/Fluent/BetaFluent.lua"))()
 
 -- Create the GUI Window using Fluent
@@ -130,7 +130,7 @@ local hubInfoParagraph = Tabs.Stats:AddParagraph({
     Content = "Uptime: N/A\nAnti-AFK: N/A\nAutoLoad: N/A"
 })
 
--- Teleports Tab
+-- Teleports Tab (NPCs dropdown)
 local npcPositions = {
     Campaign = CFrame.new(99.1990051, 12.9360542, -1.10633886, 0, 0, 1, 0, 1, 0, -1, 0, 0),
     Infinite = CFrame.new(-230.208405, 11.9185791, 152.270844, 0.642763317, 0, -0.766064942, 0, 1, 0, 0.766064942, 0, 0.642763317),
@@ -227,8 +227,7 @@ local miscRejoinGameButton = Tabs.Misc:AddButton({
         print("Rejoin Game triggered")
     end,
 })
-
--- New: Join Random Server button that hops to another public server
+-- Join Random Server Button
 local function joinRandomServer()
     local PlaceId = game.PlaceId
     local HttpService = game:GetService("HttpService")
@@ -464,8 +463,8 @@ EventHandler.Encounter:Connect(function(encounterData)
     end
 end)
 
--- AUTOSAVE / AUTLOAD SETTINGS USING SaveManager
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/vyworn/avhub/main/Fluent/Beta-SaveManager.lua"))()
+-- AUTOSAVE / AUTOLOAD SETTINGS USING SaveManager
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/marcdxi/marcx/refs/heads/main/Fluent/Beta-SaveManager.lua"))()
 SaveManager:SetLibrary(Fluent)
 SaveManager:IgnoreThemeSettings()
 SaveManager:SetFolder("TemplateHub")
