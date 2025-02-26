@@ -1,7 +1,7 @@
 
 _G.autoLoad = true
 
--- Only load the GUI in the desired game (optional)
+-- Only load the GUI in the desired game
 if game.PlaceId ~= 0 and game.PlaceId ~= 18417225778 then
      return
  end
