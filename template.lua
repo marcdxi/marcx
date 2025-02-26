@@ -1,3 +1,6 @@
+-- Uncomment or add this line at the very top to ensure autoload is enabled:
+_G.autoLoad = true
+
 -- Only load the GUI in the desired game (optional)
 -- if game.PlaceId ~= 0 and game.PlaceId ~= 18417225778 then
 --     return
@@ -130,7 +133,7 @@ local hubInfoParagraph = Tabs.Stats:AddParagraph({
     Content = "Uptime: N/A\nAnti-AFK: N/A\nAutoLoad: N/A"
 })
 
--- Teleports Tab (NPCs dropdown)
+-- Teleports Tab
 local npcPositions = {
     Campaign = CFrame.new(99.1990051, 12.9360542, -1.10633886, 0, 0, 1, 0, 1, 0, -1, 0, 0),
     Infinite = CFrame.new(-230.208405, 11.9185791, 152.270844, 0.642763317, 0, -0.766064942, 0, 1, 0, 0.766064942, 0, 0.642763317),
@@ -227,7 +230,7 @@ local miscRejoinGameButton = Tabs.Misc:AddButton({
         print("Rejoin Game triggered")
     end,
 })
--- Join Random Server Button
+-- New: Join Random Server button
 local function joinRandomServer()
     local PlaceId = game.PlaceId
     local HttpService = game:GetService("HttpService")
@@ -473,4 +476,5 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 if _G.autoLoad then
     task.wait(1)
     SaveManager:LoadAutoloadConfig()
+    print("Settings autoloaded")
 end
