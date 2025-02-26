@@ -2,9 +2,9 @@
 _G.autoLoad = true
 
 -- Only load the GUI in the desired game (optional)
--- if game.PlaceId ~= 0 and game.PlaceId ~= 18417225778 then
---     return
--- end
+if game.PlaceId ~= 0 and game.PlaceId ~= 18417225778 then
+     return
+ end
 
 -- Check if the game is loaded
 if not game:IsLoaded() then
@@ -505,7 +505,7 @@ local rareEncounters = {
 
 -- Listen for start/end of any Encounter
 EventHandler.Encounter:Connect(function(encounterData)
-    local eventType = encounterData[1]  -- "start" or "end"
+    local eventType = encounterData[1] 
     local encounterName = encounterData[2]
 
     if eventType == "start" then
@@ -547,24 +547,24 @@ EventHandler.Encounter:Connect(function(encounterData)
 end)
 
 -- Listen for EndGeneration (infinite battle end). 
--- We assume the game prints: "You reached floor [v187] and gained [v188] cards!!"
--- We'll replicate that exact string in the webhook if pingOnInfiniteEnd is on.
+-- assume the game prints: "You reached floor [v187] and gained [v188] cards!!"
+-- replicate that exact string in the webhook if pingOnInfiniteEnd is on.
 EventHandler.EndGeneration:Connect(function(v185)
     -- v185 = [someCardData, floorNumber, cardCount]
     local floorReached = v185[2]  -- floor
     local cardsReceived = v185[3] -- number of cards
 
-    -- The game prints something like:
+
     local endMessage = "You reached floor " .. floorReached .. " and gained " .. cardsReceived .. " cards!!"
     print(endMessage)
 
-    -- If the user wants a webhook ping for infinite end:
+    -- webhook ping
     if _G.pingOnInfiniteEnd and _G.discordWebhook and _G.discordWebhook ~= "" then
         local HttpService = game:GetService("HttpService")
         local requestFunction = syn and syn.request or http and http.request or http_request or request
         if requestFunction then
             
-            -- We build an embed with a red bar using "color"
+
             local embedData = {
                 title = "**Multiverse of Cards**",
                 description = "User: " .. player.Name 
