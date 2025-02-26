@@ -1,4 +1,4 @@
--- Uncomment or add this line at the very top to ensure autoload is enabled:
+
 _G.autoLoad = true
 
 -- Only load the GUI in the desired game (optional)
