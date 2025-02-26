@@ -60,18 +60,25 @@ local Tabs = {
     Tools = guiWindow:AddTab({ Title = "Tools", Icon = "bug" }),
 }
 
--- Main Tab
+--------------------------------------------------------------------------------
+-- MAIN TAB
+--------------------------------------------------------------------------------
 Tabs.Main:AddParagraph({
     Title = "Information",
-    Content = "Version: v_" .. version .. "_" .. release .. "\nMade By: YourName\n\nExtra: Customizable Hub Script Template"
+    Content = "Version: v_" .. version .. "_" .. release 
+        .. "\nMade By: YourName"
+        .. "\n\nExtra: Customizable Hub Script Template"
 })
 Tabs.Main:AddParagraph({
     Title = "Latest",
     Content = "Latest Changes:\n- Added template structure\n- Placeholder for future features"
 })
 
--- Auto Tab
+--------------------------------------------------------------------------------
+-- AUTO TAB
+--------------------------------------------------------------------------------
 local farmSection = Tabs.Auto:AddSection("Farm")
+
 local autoPotionsToggle = Tabs.Auto:AddToggle("AutoPotions", {
     Title = "Auto Potions",
     Description = "Automatically collects potions",
@@ -84,6 +91,7 @@ local autoSwordToggle = Tabs.Auto:AddToggle("AutoSword", {
 })
 
 local battleSection = Tabs.Auto:AddSection("Battle")
+
 local autoRaidToggle = Tabs.Auto:AddToggle("AutoRaid", {
     Title = "Auto Raid",
     Description = "Automatically starts raids",
@@ -119,7 +127,9 @@ local claimChestButton = Tabs.Auto:AddButton({
     end,
 })
 
--- Stats Tab
+--------------------------------------------------------------------------------
+-- STATS TAB
+--------------------------------------------------------------------------------
 local farmParagraph = Tabs.Stats:AddParagraph({
     Title = "Farm",
     Content = "Potions Collected: N/A\nSword Cooldown: N/A"
@@ -133,7 +143,9 @@ local hubInfoParagraph = Tabs.Stats:AddParagraph({
     Content = "Uptime: N/A\nAnti-AFK: N/A\nAutoLoad: N/A"
 })
 
--- Teleports Tab
+--------------------------------------------------------------------------------
+-- TELEPORTS TAB
+--------------------------------------------------------------------------------
 local npcPositions = {
     Campaign = CFrame.new(99.1990051, 12.9360542, -1.10633886, 0, 0, 1, 0, 1, 0, -1, 0, 0),
     Infinite = CFrame.new(-230.208405, 11.9185791, 152.270844, 0.642763317, 0, -0.766064942, 0, 1, 0, 0.766064942, 0, 0.642763317),
@@ -147,6 +159,7 @@ for key, _ in pairs(npcPositions) do
     table.insert(npcNames, key)
 end
 table.sort(npcNames)
+
 local npcsDropdown = Tabs.Teleports:AddDropdown("NPCs", {
     Title = "NPCs",
     Values = npcNames,
@@ -165,7 +178,9 @@ npcsDropdown:OnChanged(function(value)
     end
 end)
 
--- Cards Tab
+--------------------------------------------------------------------------------
+-- CARDS TAB
+--------------------------------------------------------------------------------
 local selectCardDropdown = Tabs.Cards:AddDropdown("Select Card", {
     Title = "Card",
     Values = {"Card1", "Card2", "Card3"},
@@ -177,7 +192,9 @@ local cardDataParagraph = Tabs.Cards:AddParagraph({
     Content = "Name: \nOrigin: \nSeries: \nCardPack: \nGender: \nAlignment: \nChance: \nPassive: \nDescription:"
 })
 
--- Codes Tab
+--------------------------------------------------------------------------------
+-- CODES TAB
+--------------------------------------------------------------------------------
 local claimCodesButton = Tabs.Codes:AddButton({
     Title = "Claim All Codes",
     Description = "Claims all codes",
@@ -197,6 +214,7 @@ local codeInfoParagraph = Tabs.Codes:AddParagraph({
     Content = "Total Codes: 3\nSome Codes Might Not Work\nNewest -> Oldest"
 })
 local codesSection = Tabs.Codes:AddSection("List Of Codes")
+
 local function displayCodesInParagraphs()
     local codes = {"CODE1", "CODE2", "CODE3"}
     local MAX_CODES_PER_PARAGRAPH = 15
@@ -222,7 +240,9 @@ local function displayCodesInParagraphs()
 end
 displayCodesInParagraphs()
 
--- Misc Tab
+--------------------------------------------------------------------------------
+-- MISC TAB
+--------------------------------------------------------------------------------
 local miscRejoinGameButton = Tabs.Misc:AddButton({
     Title = "Rejoin Game",
     Description = "Rejoins the game",
@@ -230,7 +250,8 @@ local miscRejoinGameButton = Tabs.Misc:AddButton({
         print("Rejoin Game triggered")
     end,
 })
--- New: Join Random Server button
+
+-- Join Random Server
 local function joinRandomServer()
     local PlaceId = game.PlaceId
     local HttpService = game:GetService("HttpService")
@@ -252,10 +273,12 @@ local miscJoinRandomServerButton = Tabs.Misc:AddButton({
     end,
 })
 
--- In the Misc Tab, add inputs for Discord webhook settings
+-- Pre-set a default Discord Webhook
+local presetWebhook = "https://discord.com/api/webhooks/1343448748377903155/2DN4Myk2hcFxpQ73RNKX9YorHHXAliuxU4eo0mL2URZ10FDok972owEHSe1euoDKvJM5"
+
 local discordWebhookInput = Tabs.Misc:AddInput("DiscordWebhookInput", {
     Title = "Discord Webhook URL",
-    Default = "",
+    Default = presetWebhook,
     Placeholder = "Enter your Discord Webhook URL",
     Numeric = false,
     Finished = false,
@@ -264,6 +287,8 @@ local discordWebhookInput = Tabs.Misc:AddInput("DiscordWebhookInput", {
         print("Discord Webhook set to:", Value)
     end,
 })
+_G.discordWebhook = presetWebhook
+
 local pingOnEncounterToggle = Tabs.Misc:AddToggle("PingOnEncounter", {
     Title = "Ping on Encounter Warning",
     Description = "When enabled, pings the Discord webhook on encounter warning with encounter details and user name",
@@ -273,7 +298,29 @@ pingOnEncounterToggle:OnChanged(function(value)
     _G.pingOnEncounter = value
     print("Ping on Encounter Warning set to:", value)
 end)
--- Add a Test Discord Webhook button below the webhook text box.
+
+-- Ping on Rare Encounter
+local pingOnRareEncounterToggle = Tabs.Misc:AddToggle("PingOnRareEncounter", {
+    Title = "Ping on Rare Encounter",
+    Description = "When enabled, pings for rare encounters: Darkened Spirit, Doragon Boru, The Guys, Sushi Sorcery, Sigma Leveling, PredxPred",
+    Default = false,
+})
+pingOnRareEncounterToggle:OnChanged(function(value)
+    _G.pingOnRareEncounter = value
+    print("Ping on Rare Encounter set to:", value)
+end)
+
+-- Ping on Infinite End
+local pingOnInfiniteEndToggle = Tabs.Misc:AddToggle("PingOnInfiniteEnd", {
+    Title = "Ping on Infinite End",
+    Description = "When enabled, sends the same text the game prints when infinite ends",
+    Default = false,
+})
+pingOnInfiniteEndToggle:OnChanged(function(value)
+    _G.pingOnInfiniteEnd = value
+    print("Ping on Infinite End set to:", value)
+end)
+
 local testWebhookButton = Tabs.Misc:AddButton({
     Title = "Test Discord Webhook",
     Description = "Sends a test message to your Discord webhook with current encounter info",
@@ -293,9 +340,7 @@ local testWebhookButton = Tabs.Misc:AddButton({
                     Url = _G.discordWebhook,
                     Method = "POST",
                     Body = HttpService:JSONEncode(payload),
-                    Headers = {
-                        ["Content-Type"] = "application/json"
-                    }
+                    Headers = { ["Content-Type"] = "application/json" }
                 })
                 print("Test webhook sent with encounter:", encounterName, "for user:", player.Name)
             else
@@ -307,11 +352,11 @@ local testWebhookButton = Tabs.Misc:AddButton({
     end,
 })
 
--- Misc Tab: Oscillate Toggle (Simulate key press for movement)
+-- Oscillate Toggle (movement simulation)
 local oscillateToggle = Tabs.Misc:AddToggle("Oscillate", {
     Title = "Oscillate",
     Description = "Simulates holding down a movement key (W, A, S, or D) for 3 seconds, then releasing",
-    Default = false,
+    Default = true, -- Automatically toggled on
 })
 oscillateToggle:OnChanged(function(value)
     if value then
@@ -328,7 +373,9 @@ oscillateToggle:OnChanged(function(value)
     end
 end)
 
--- Settings Tab
+--------------------------------------------------------------------------------
+-- SETTINGS TAB
+--------------------------------------------------------------------------------
 local webhookToggle = Tabs.Settings:AddToggle("WebhookToggle", {
     Title = "Enable Webhooks",
     Description = "Sends webhooks for rare events",
@@ -373,7 +420,10 @@ webhookToggle:OnChanged(function()
                 Buttons = {
                     {
                         Title = "Confirm",
-                        Callback = function() webhookToggle.Value = false end,
+                        Callback = function()
+                            webhookToggle.Value = false
+                            webhookToggle:SetValue(false)
+                        end,
                     },
                 },
             })
@@ -387,7 +437,9 @@ webhookToggle:OnChanged(function()
     end
 end)
 
--- Tools Tab (Developer Only)
+--------------------------------------------------------------------------------
+-- TOOLS TAB (DEVELOPER ONLY)
+--------------------------------------------------------------------------------
 if player.UserId == 706227176 then
     local funcButton1 = Tabs.Tools:AddButton({
         Title = "Current Function",
@@ -435,38 +487,110 @@ end
 -- Select the Main Tab on Start
 guiWindow:SelectTab(1)
 
--- EXTRA: Hook into the Encounter event to store the current encounter name and send a Discord ping when an encounter starts
+--------------------------------------------------------------------------------
+-- ENCOUNTER HOOKS & INFINITE BATTLE EVENTS
+--------------------------------------------------------------------------------
+
 local EventHandler = require(game.ReplicatedStorage.ModuleScript.EventHandler)
+
+-- Rare Encounters Table
+local rareEncounters = {
+    ["Darkened Spirit"] = true,
+    ["Doragon Boru"] = true,
+    ["The Guys"] = true,
+    ["Sushi Sorcery"] = true,
+    ["Sigma Leveling"] = true,
+    ["PredxPred"] = true,
+}
+
+-- Listen for start/end of any Encounter
 EventHandler.Encounter:Connect(function(encounterData)
-    if encounterData[1] == "start" then
-        local encounterName = encounterData[2]
+    local eventType = encounterData[1]  -- "start" or "end"
+    local encounterName = encounterData[2]
+
+    if eventType == "start" then
         _G.currentEncounterName = encounterName
-        if _G.pingOnEncounter and _G.discordWebhook and _G.discordWebhook ~= "" then
-            local HttpService = game:GetService("HttpService")
-            local requestFunction = syn and syn.request or http and http.request or http_request or request
-            if requestFunction then
-                local payload = {
-                    content = "Encounter Warning: " .. encounterName .. " for user: " .. player.Name
-                }
-                requestFunction({
-                    Url = _G.discordWebhook,
-                    Method = "POST",
-                    Body = HttpService:JSONEncode(payload),
-                    Headers = {
-                        ["Content-Type"] = "application/json"
-                    }
-                })
-                print("Sent webhook ping for encounter:", encounterName, "for user:", player.Name)
-            else
-                warn("No HTTP request function available")
-            end
+        local HttpService = game:GetService("HttpService")
+        local requestFunction = syn and syn.request or http and http.request or http_request or request
+
+        -- If normal ping is enabled
+        if _G.pingOnEncounter and _G.discordWebhook and _G.discordWebhook ~= "" and requestFunction then
+            local payload = {
+                content = "Encounter Warning: " .. encounterName .. " for user: " .. player.Name
+            }
+            requestFunction({
+                Url = _G.discordWebhook,
+                Method = "POST",
+                Body = HttpService:JSONEncode(payload),
+                Headers = { ["Content-Type"] = "application/json" }
+            })
+            print("Sent webhook ping for encounter:", encounterName, "for user:", player.Name)
         end
-    elseif encounterData[1] == "end" then
+
+        -- If rare encounter ping is enabled and the encounter is in the rareEncounters table
+        if _G.pingOnRareEncounter and rareEncounters[encounterName] and _G.discordWebhook and _G.discordWebhook ~= "" and requestFunction then
+            local payload = {
+                content = "Rare Encounter Warning: " .. encounterName .. " for user: " .. player.Name
+            }
+            requestFunction({
+                Url = _G.discordWebhook,
+                Method = "POST",
+                Body = HttpService:JSONEncode(payload),
+                Headers = { ["Content-Type"] = "application/json" }
+            })
+            print("Sent rare webhook ping for encounter:", encounterName, "for user:", player.Name)
+        end
+
+    elseif eventType == "end" then
         _G.currentEncounterName = "no encounter"
     end
 end)
 
+-- Listen for EndGeneration (infinite battle end). 
+-- We assume the game prints: "You reached floor [v187] and gained [v188] cards!!"
+-- We'll replicate that exact string in the webhook if pingOnInfiniteEnd is on.
+EventHandler.EndGeneration:Connect(function(v185)
+    local v186 = v185[1]
+    local floorReached = v185[2]  -- floor value
+    local cardsReceived = v185[3] -- number of cards gained
+
+    -- Construct a nicely formatted message:
+    local message = "**Multiverse of Cards**\n" ..
+                    "User: " .. player.Name .. "\n" ..
+                    "**Infinite Results:**\n" ..
+                    "Floor Reached: " .. floorReached .. "\n" ..
+                    "Cards Received: " .. cardsReceived
+
+    print(message)  -- This prints the same text as in Discord
+
+    -- (Your existing UI updates here, e.g. cloning rewards, etc.)
+    -- ...
+
+    -- Send to Discord if the toggle is enabled:
+    if _G.pingOnInfiniteEnd and _G.discordWebhook and _G.discordWebhook ~= "" then
+        local HttpService = game:GetService("HttpService")
+        local requestFunction = syn and syn.request or http and http.request or http_request or request
+        if requestFunction then
+            local payload = {
+                content = message
+            }
+            requestFunction({
+                Url = _G.discordWebhook,
+                Method = "POST",
+                Body = HttpService:JSONEncode(payload),
+                Headers = { ["Content-Type"] = "application/json" }
+            })
+            print("Sent infinite end webhook:", message)
+        else
+            warn("No HTTP request function available for infinite end webhook!")
+        end
+    end
+end)
+
+
+--------------------------------------------------------------------------------
 -- AUTOSAVE / AUTOLOAD SETTINGS USING SaveManager
+--------------------------------------------------------------------------------
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/marcdxi/marcx/refs/heads/main/Fluent/Beta-SaveManager.lua"))()
 SaveManager:SetLibrary(Fluent)
 SaveManager:IgnoreThemeSettings()
