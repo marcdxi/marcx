@@ -890,7 +890,7 @@ local function startEasyExploration()
     }
     
     local success = pcall(function()
-        game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("afe0f222-0028-43ee-8976-7f83f4870e3e"):FireServer(unpack(args))
+        game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("41d7a9bf-4307-4be1-a805-b6e642a7fdce"):FireServer(unpack(args))
     end)
     
     if success then
@@ -905,15 +905,15 @@ local function startMediumExploration()
     local args = {
         [1] = "medium",
         [2] = {
-            [1] = "galactic_tyrant",
-            [2] = "esper_prodigy",
-            [3] = "mist_hashira",
-            [4] = "science_king:secret"
+            [1] = "red_pilot",
+            [2] = "red_pilot",
+            [3] = "red_pilot",
+            [4] = "red_pilot"
         }
     }
     
     local success = pcall(function()
-        game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("afe0f222-0028-43ee-8976-7f83f4870e3e"):FireServer(unpack(args))
+        game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("41d7a9bf-4307-4be1-a805-b6e642a7fdce"):FireServer(unpack(args))
     end)
     
     if success then
@@ -923,19 +923,20 @@ local function startMediumExploration()
     end
 end
 
+
 local function startHardExploration()
     local args = {
         [1] = "hard",
         [2] = {
-            [1] = "genie_commander",
-            [2] = "genie_commander",
-            [3] = "black_demon:gold",
-            [4] = "cat_burglar:secret"
+            [1] = "fire_dragon:gold",
+            [2] = "fire_dragon:gold",
+            [3] = "the_impure_ghost",
+            [4] = "stark_gunner:gold"
         }
     }
     
     local success = pcall(function()
-        game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("afe0f222-0028-43ee-8976-7f83f4870e3e"):FireServer(unpack(args))
+        game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("41d7a9bf-4307-4be1-a805-b6e642a7fdce"):FireServer(unpack(args))
     end)
     
     if success then
@@ -945,6 +946,9 @@ local function startHardExploration()
     end
 end
 
+
+
+
 -- Functions to claim explorations of different difficulties
 local function claimEasyExploration()
     local args = {
@@ -952,7 +956,7 @@ local function claimEasyExploration()
     }
     
     local success = pcall(function()
-    game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("32255117-6ee4-4731-bb0f-527e71e7628e"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("80184641-5833-40a8-b25f-d75128c8d8cf"):FireServer(unpack(args))
     end)
     
     if success then
@@ -974,7 +978,7 @@ local function claimMediumExploration()
     }
     
     local success = pcall(function()
-    game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("32255117-6ee4-4731-bb0f-527e71e7628e"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("80184641-5833-40a8-b25f-d75128c8d8cf"):FireServer(unpack(args))
     end)
     
     if success then
@@ -992,7 +996,7 @@ local function claimHardExploration()
     }
     
     local success = pcall(function()
-    game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("32255117-6ee4-4731-bb0f-527e71e7628e"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("80184641-5833-40a8-b25f-d75128c8d8cf"):FireServer(unpack(args))
     end)
     
     if success then
