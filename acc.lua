@@ -226,7 +226,7 @@ autoInfiniteToggle:OnChanged(function(state)
                 end
                 
                 -- Attempt to start or continue infinite tower
-                game:GetService("ReplicatedStorage"):WaitForChild("55B"):WaitForChild("897f9a78-7f89-42a3-8780-e664f83581e5"):FireServer()
+                game:GetService("ReplicatedStorage"):WaitForChild("qVL"):WaitForChild("79f1b6e9-0e5d-49fa-b11e-063dcbcb1544"):FireServer()
                 local startSuccess = pcall(function()
                     -- First, check if we're on a summary screen
                     local summaryFound = false
@@ -479,6 +479,7 @@ local function fightBoss(bossInfo)
     
     local remote = ReplicatedStorage:WaitForChild("qVL"):WaitForChild("a61f4b02-e14f-4033-ab17-d37283df7c91")
     
+    
     -- Attempt to fire the remote
     local success = pcall(function()
         remote:FireServer(unpack(args))
@@ -494,6 +495,7 @@ local function fightBoss(bossInfo)
         return false
     end
 end
+
 
 local function startBossFarming()
     if farmingBosses then return end
